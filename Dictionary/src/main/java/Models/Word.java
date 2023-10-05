@@ -19,12 +19,7 @@ public class Word {
     }
 
     public void setWordExplain(String wordExplain) {
-        if (this.wordExplain == null)
-            this.wordExplain = wordExplain;
-        else {
-            this.wordExplain = this.wordExplain.concat("\n");
-            this.wordExplain = this.wordExplain.concat(wordExplain);
-        }
+        this.wordExplain = wordExplain;
     }
 
     public void setWordTarget(String wordTarget) {

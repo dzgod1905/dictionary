@@ -62,6 +62,15 @@ public class Dictionary {
     }
   }
 
+  public static void changeWord(Word word) {
+    String wordTarget = word.getWordTarget().toLowerCase();
+    String wordExplain = word.getWordExplain();
+    Word tmp = findWordAdvance(wordTarget);
+    if (tmp == null)
+      return;
+    tmp.setWordExplain(wordExplain);
+  }
+
   public static void main(String[] args) {
     Word word = new Word("JustLonely", "me");
     addWord(word);
