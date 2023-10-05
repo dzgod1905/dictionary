@@ -13,6 +13,11 @@ public class Word {
         this.wordExplain = wordExplain;
     }
 
+    public void deleteWord() {
+        this.wordTarget = null;
+        this.wordExplain = null;
+    }
+
     public void setWordExplain(String wordExplain) {
         if (this.wordExplain == null)
             this.wordExplain = wordExplain;
