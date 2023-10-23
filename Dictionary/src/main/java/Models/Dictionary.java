@@ -5,10 +5,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Dictionary {
-  private final static ArrayList<Word> wordList = new ArrayList<>();
-  private final static Word head = new Word();
+  private final ArrayList<Word> wordList = new ArrayList<>();
+  private final Word head = new Word();
 
-  public static void addWord(Word word) {
+  public void addWord(Word word) {
     String wordTarget = word.getWordTarget();
     String wordExplain = word.getWordExplain();
     wordTarget = wordTarget.toLowerCase();
@@ -30,7 +30,7 @@ public class Dictionary {
       wordList.add(tmp);
   }
 
-  public static Word findWordBasic(String wordTarget) {
+  public Word findWordBasic(String wordTarget) {
     wordTarget = wordTarget.toLowerCase();
     for (Word word : wordList) {
       if (word.getWordTarget().equals(wordTarget))
@@ -39,7 +39,7 @@ public class Dictionary {
     return null;
   }
 
-  public static Word findWordAdvance(String wordTarget) {
+  public Word findWordAdvance(String wordTarget) {
     wordTarget = wordTarget.toLowerCase();
     int len = wordTarget.length();
     Word tmp = head;
@@ -54,7 +54,7 @@ public class Dictionary {
     return tmp;
   }
 
-  public static ArrayList<Word> searchWord(String search) {
+  public ArrayList<Word> searchWord(String search) {
     search = search.toLowerCase();
     ArrayList<Word> list = new ArrayList<>();
 
@@ -74,7 +74,7 @@ public class Dictionary {
     return list;
   }
 
-  public static void removeWord(String wordTarget) {
+  public void removeWord(String wordTarget) {
     wordTarget = wordTarget.toLowerCase();
     Word tmp = findWordBasic(wordTarget);
     if (tmp != null) {
@@ -84,7 +84,7 @@ public class Dictionary {
     }
   }
 
-  public static void changeWord(Word word) {
+  public void changeWord(Word word) {
     String wordTarget = word.getWordTarget().toLowerCase();
     String wordExplain = word.getWordExplain();
     Word tmp = findWordAdvance(wordTarget);
@@ -93,7 +93,7 @@ public class Dictionary {
     tmp.setWordExplain(wordExplain);
   }
 
-  public static void showAll() {
+  public void showAll() {
     System.out.println("No       | English                 | Vietnamese");
     int i = 0;
     for (Word word : wordList) {
@@ -105,18 +105,6 @@ public class Dictionary {
       for (int tmp = 0; tmp < 24 - word.getWordTarget().length(); tmp++)
         System.out.print(" ");
       System.out.println("| " + word.getWordExplain());
-    }
-  }
-
-  public static void main(String[] args) {
-    Word word = new Word("JustLonely", "me");
-    Word word1 = new Word("JustLonel", "lone");
-    Word word2 = new Word("JuttLonel", "lone");
-    addWord(word);
-    addWord(word1);
-    addWord(word2);
-    for (Word tmp : searchWord("Ju")) {
-      System.out.println(tmp.getWordTarget());
     }
   }
 }
