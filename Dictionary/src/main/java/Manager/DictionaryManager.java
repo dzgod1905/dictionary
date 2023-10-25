@@ -32,6 +32,7 @@ public class DictionaryManager {
   }
 
   public static void main(String[] args) {
-
+    DictionaryManager dictionaryManager = new DictionaryManager();
+    dictionaryManager.insertFromDatabase();
   }
 }

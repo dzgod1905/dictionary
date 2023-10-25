@@ -1,9 +1,12 @@
 package Models;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Word {
     private String wordTarget;
     private String wordExplain;
-    private final Word[] nextChild = new Word[26];
+    private final Map<Integer, Word> nextChild = new HashMap<>();
 
     public Word() {
     }
@@ -35,15 +38,15 @@ public class Word {
     }
 
     public void setNextChild(int index, Word word) {
-        nextChild[index] = word;
+        nextChild.put(index, word);
     }
 
     public Word getNextChild(int index) {
-        return nextChild[index];
+        return nextChild.get(index);
     }
 
     public static void main(String[] args) {
         String tmp = "z";
-        System.out.println(tmp.charAt(0) - 'a');
+        System.out.println(tmp.charAt(0));
     }
 }

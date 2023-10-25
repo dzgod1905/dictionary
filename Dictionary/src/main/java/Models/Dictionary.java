@@ -1,8 +1,6 @@
 package Models;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class Dictionary {
   private final ArrayList<Word> wordList = new ArrayList<>();
@@ -16,18 +14,17 @@ public class Dictionary {
     Word tmp = head;
     int i = 0;
     while (i < len) {
-      Word nextChild = tmp.getNextChild(wordTarget.charAt(i) - 'a');
+      Word nextChild = tmp.getNextChild(wordTarget.charAt(i));
       if (nextChild == null) {
         nextChild = new Word();
-        tmp.setNextChild(wordTarget.charAt(i) - 'a', nextChild);
+        tmp.setNextChild(wordTarget.charAt(i), nextChild);
       }
       tmp = nextChild;
       i++;
     }
     tmp.setWordTarget(wordTarget);
     tmp.setWordExplain(wordExplain);
-    if (findWordBasic(wordTarget) == null)
-      wordList.add(tmp);
+    wordList.add(tmp);
   }
 
   public Word findWordBasic(String wordTarget) {
@@ -45,7 +42,7 @@ public class Dictionary {
     Word tmp = head;
     int i = 0;
     while (i < len) {
-      Word nextChild = tmp.getNextChild(wordTarget.charAt(i) - 'a');
+      Word nextChild = tmp.getNextChild(wordTarget.charAt(i));
       if (nextChild == null)
         return null;
       tmp = nextChild;
