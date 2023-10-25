@@ -1,6 +1,8 @@
 package Models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Word {
@@ -43,6 +45,10 @@ public class Word {
 
     public Word getNextChild(int index) {
         return nextChild.get(index);
+    }
+
+    public List<Integer> getAllChilds() {
+        return new ArrayList<>(nextChild.keySet());
     }
 
     public static void main(String[] args) {

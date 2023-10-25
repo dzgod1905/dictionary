@@ -64,8 +64,8 @@ public class Dictionary {
     while (!queue.isEmpty()) {
       tmp = queue.remove();
       if(tmp.getWordTarget()!=null) list.add(tmp);
-      for (int i = 0; i < 26; i++)
-        if (tmp.getNextChild(i) != null) queue.add(tmp.getNextChild(i));
+      for (Integer i : tmp.getAllChilds())
+        queue.add(tmp.getNextChild(i));
     }
 
     return list;
