@@ -104,4 +104,8 @@ public class Dictionary {
       System.out.println("| " + word.getWordExplain());
     }
   }
+
+  public ArrayList<Word> getWordList() {
+    return new ArrayList<>(wordList);
+  }
 }

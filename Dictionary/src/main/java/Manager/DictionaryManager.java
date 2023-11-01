@@ -5,6 +5,8 @@ import Models.Word;
 
 import java.io.*;
 import java.sql.*;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
 
 public class DictionaryManager {
@@ -17,6 +19,18 @@ public class DictionaryManager {
       while ((line = br.readLine()) != null) {
         String[] words = line.split("\t");
         dictionary.addWord(new Word(words[0], words[1]));
+      }
+    } catch (IOException e) {
+      System.out.println(e.getMessage());
+    }
+  }
+
+  public void exportToFile() {
+    try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("./Dictionary/src/main/resources/dictionaries.txt"))) {
+      List<Word> wordList = dictionary.getWordList();
+      wordList.sort(Comparator.comparing(Word::getWordTarget));
+      for (Word word : wordList) {
+        bufferedWriter.write(word.getWordTarget() + "\t" + word.getWordExplain() + "\n");
       }
     } catch (IOException e) {
       System.out.println(e.getMessage());
@@ -44,5 +58,6 @@ public class DictionaryManager {
 
   public static void main(String[] args) {
     DictionaryManager dictionaryManager = new DictionaryManager();
+    dictionaryManager.exportToFile();
   }
 }
