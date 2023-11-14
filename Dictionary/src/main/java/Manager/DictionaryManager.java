@@ -5,6 +5,7 @@ import Models.Word;
 
 import java.io.*;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -50,6 +51,34 @@ public class DictionaryManager {
     } catch (SQLException e) {
       System.out.println(e.getMessage());
     }
+  }
+
+  public void addWord(Word word) {
+    dictionary.addWord(word);
+  }
+
+  public Word findWordBasic(String wordTarget) {
+    return dictionary.findWordBasic(wordTarget);
+  }
+
+  public Word findWordAdvance(String wordTarget) {
+    return dictionary.findWordAdvance(wordTarget);
+  }
+
+  public ArrayList<Word> searchWord(String search) {
+    return dictionary.searchWord(search);
+  }
+
+  public void removeWord(String wordTarget) {
+    dictionary.removeWord(wordTarget);
+  }
+
+  public void changeWord(Word word) {
+    dictionary.changeWord(word);
+  }
+
+  public ArrayList<Word> getWordList() {
+    return dictionary.getWordList();
   }
 
   public DictionaryManager(){
