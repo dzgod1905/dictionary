@@ -13,7 +13,7 @@ import java.util.Objects;
 public class DictionaryManager {
   private Dictionary dictionary = new Dictionary();
 
-  private void insertFromFile(){
+  public void insertFromFile(){
     try (InputStream is = getClass().getResourceAsStream("/dictionaries.txt")) {
       BufferedReader br = new BufferedReader(new InputStreamReader(Objects.requireNonNull(is)));
       String line;
@@ -38,7 +38,7 @@ public class DictionaryManager {
     }
   }
 
-  private void insertFromDatabase() {
+  public void insertFromDatabase() {
     String url = "jdbc:postgresql://localhost:5432/dictionary?user=admin&password=admin";
     try (Connection conn = DriverManager.getConnection(url)) {
       Statement st = conn.createStatement();
@@ -81,9 +81,7 @@ public class DictionaryManager {
     return dictionary.getWordList();
   }
 
-  public DictionaryManager(){
-    insertFromFile();
-  }
+  public DictionaryManager() {}
 
   public static void main(String[] args) {
     DictionaryManager dictionaryManager = new DictionaryManager();
