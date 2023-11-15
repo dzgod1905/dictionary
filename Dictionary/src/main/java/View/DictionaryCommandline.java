@@ -40,13 +40,13 @@ public class DictionaryCommandline {
         if (wordList == null || wordList.isEmpty())
             System.out.println("No words with such prefix found!");
         else {
-            System.out.println("The words found: ");
+            System.out.println("The word(s) found: ");
             for (Word word: wordList) System.out.printf("%s - %s\n", word.getWordTarget(), word.getWordExplain());
         }
     }
 
     public void insertFromCommandline() {
-        int n = InputScanner.getInteger("Number of word to add: ");
+        int n = InputScanner.getInteger("Number of words to add: ");
         InputScanner.getLine();
         while (n --> 0) {
             String wordTarget = InputScanner.getLine();
@@ -54,10 +54,10 @@ public class DictionaryCommandline {
             dictManager.addWord(new Word(wordTarget, wordExplain));
         }
     }
-    
+
     public void dictionaryBasic() {
         int choice;
-        System.out.println("Welcome to my Application!!!");
+        System.out.println("Welcome to my Basic Application!!!");
         do {
             System.out.println("""
 					[0] Exit
@@ -71,14 +71,40 @@ public class DictionaryCommandline {
             }
         } while (choice != 0);
     }
-    public void dictionaryAdvanced() { // added later
-
+    public void dictionaryAdvanced() {
+        int choice;
+        System.out.println("Welcome to my Advanced Application!!!");
+        do {
+            System.out.println("""
+					[0] Exit
+					[1] Add
+					[2] Remove
+					[3] Update
+					[4] Display
+					[5] Lookup
+					[6] Search
+					[7] Import from file
+					[8] Export to file
+					""");
+            choice = InputScanner.getIntegerRange("Your action (from 0 to 8): ", 0, 8);
+            InputScanner.getLine();
+            switch (choice) {
+                case 1 -> insertFromCommandline();
+                case 2 -> doRemove();
+                case 3 -> doUpdate();
+                case 4 -> showAllWords();
+                case 5 -> doLookUp();
+                case 6 -> doSearch();
+                case 7 -> dictManager.insertFromFile();
+                case 8 -> dictManager.exportToFile();
+            }
+        } while (choice != 0);
     }
 
     // test client
     public static void main(String[] args) {
         DictionaryCommandline dictCmd = new DictionaryCommandline();
-        dictCmd.dictionaryBasic();
+//        dictCmd.dictionaryBasic();
+        dictCmd.dictionaryAdvanced();
     }
 }
-
