@@ -1,4 +1,4 @@
-# Dictionary App
+# E-learning App
 
 ## Contributors
 
