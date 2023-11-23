@@ -1,4 +1,4 @@
-package View;
+package Views;
 
 import Manager.DictionaryManager;
 import Utils.InputScanner;
