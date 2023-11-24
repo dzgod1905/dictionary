@@ -16,7 +16,6 @@ public class Warnings {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);
-        alert.showAndWait();
         return alert;
     }
 

@@ -11,9 +11,6 @@ import javafx.stage.StageStyle;
 import java.util.Objects;
 
 public class DictApp extends Application {
-//    private double xOffset = 0;
-//    private double yOffset = 0;
-
     @Override
     public void start(final Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(
