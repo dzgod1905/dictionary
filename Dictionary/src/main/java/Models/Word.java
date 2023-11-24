@@ -11,6 +11,7 @@ public class Word {
     private final Map<Integer, Word> nextChild = new HashMap<>();
 
     public Word() {
+
     }
 
     public Word(String wordTarget, String wordExplain) {
@@ -51,8 +52,11 @@ public class Word {
         return new ArrayList<>(nextChild.keySet());
     }
 
+    @Override
+    public String toString() {
+        return String.format("Word: %s\nMeaning:\n%s", wordTarget, wordExplain);
+    }
+
     public static void main(String[] args) {
-        String tmp = "z";
-        System.out.println(tmp.charAt(0));
     }
 }

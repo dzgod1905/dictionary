@@ -29,16 +29,15 @@ public class AdderController implements Initializable {
     private void handleClickAddButton() {
         Alert alertConfirm = warnings.alertConfirmation("Add word", "Bạn chắc chắn muốn thêm từ này?");
         Optional<ButtonType> option = alertConfirm.showAndWait();
-        String englishWord = wordTargetInput.getText().trim();
-        String meaning = explanationInput.getText().trim();
-        System.err.println(englishWord);
 
         if (option.isEmpty()) return;
         if (option.get() == ButtonType.OK) {
-            System.err.println("ok");
-
+            String englishWord = wordTargetInput.getText().trim();
+            String meaning = explanationInput.getText().trim();
             Word word = new Word(englishWord, meaning);
-            if (dictionaryManager.findWordAdvance(englishWord) != null) {
+            Word prevWord = dictionaryManager.findWordAdvance(englishWord);
+
+            if (prevWord != null && prevWord.getWordTarget() != null) {
                 Alert selectionAlert = warnings.alertConfirmation("This word already exists",
                         "Từ này đã tồn tại.\nThay thế hoặc bổ sung nghĩa vừa nhập cho nghĩa cũ.");
                 selectionAlert.getButtonTypes().clear();
@@ -49,18 +48,21 @@ public class AdderController implements Initializable {
 
                 if (selection.isEmpty()) return;
                 if (selection.get() == replaceButton) {
-                    // need adding
+                    prevWord.setWordExplain(meaning);
                     showSuccess();
                 }
                 if (selection.get() == insertButton) {
-                    // need adding
+                    prevWord.setWordExplain(prevWord.getWordExplain() + "\n" + meaning);
                     showSuccess();
                 }
-                if (selection.get() == ButtonType.CANCEL) warnings.showWarningInfo("Information", "Thay đổi không được công nhận.");
+                if (selection.get() == ButtonType.CANCEL)
+                    warnings.showWarningInfo("Information", "Thay đổi không được công nhận.");
             } else {
                 dictionaryManager.addWord(word);
                 showSuccess();
             }
+            System.out.println(dictionaryManager.findWordAdvance(englishWord));
+            // add exportToFile later
             addButton.setDisable(true);
             resetInput();
         }
