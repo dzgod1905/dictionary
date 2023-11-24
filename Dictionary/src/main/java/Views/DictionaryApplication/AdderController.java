@@ -12,7 +12,6 @@ import java.util.ResourceBundle;
 
 public class AdderController implements Initializable {
     private final DictionaryManager dictionaryManager = new DictionaryManager();
-    private final String path = "src/main/resources/dictionaries.txt";
     private final Warnings warnings = new Warnings();
 
     @Override
@@ -30,11 +29,14 @@ public class AdderController implements Initializable {
     private void handleClickAddButton() {
         Alert alertConfirm = warnings.alertConfirmation("Add word", "Bạn chắc chắn muốn thêm từ này?");
         Optional<ButtonType> option = alertConfirm.showAndWait();
+        String englishWord = wordTargetInput.getText().trim();
+        String meaning = explanationInput.getText().trim();
+        System.err.println(englishWord);
 
         if (option.isEmpty()) return;
         if (option.get() == ButtonType.OK) {
-            String englishWord = wordTargetInput.getText().trim();
-            String meaning = explanationInput.getText().trim();
+            System.err.println("ok");
+
             Word word = new Word(englishWord, meaning);
             if (dictionaryManager.findWordAdvance(englishWord) != null) {
                 Alert selectionAlert = warnings.alertConfirmation("This word already exists",
@@ -62,7 +64,10 @@ public class AdderController implements Initializable {
             addButton.setDisable(true);
             resetInput();
         }
-        else warnings.showWarningInfo("Information", "Thay đổi không được công nhận.");
+        else {
+            System.err.println("wrong");
+            warnings.showWarningInfo("Information", "Thay đổi không được công nhận.");
+        }
     }
 
     private void resetInput() {
