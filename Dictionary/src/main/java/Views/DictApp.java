@@ -1,4 +1,4 @@
-package Views.DictionaryApplication;
+package Views;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -82,12 +82,8 @@ public class Dictionary {
   }
 
   public void changeWord(Word word) {
-    String wordTarget = word.getWordTarget().toLowerCase();
-    String wordExplain = word.getWordExplain();
-    Word tmp = findWordAdvance(wordTarget);
-    if (tmp == null)
-      return;
-    tmp.setWordExplain(wordExplain);
+    removeWord(word.getWordTarget());
+    addWord(word);
   }
 
   public void showAll() {
@@ -107,5 +103,18 @@ public class Dictionary {
 
   public ArrayList<Word> getWordList() {
     return new ArrayList<>(wordList);
+  }
+
+  public static void main(String[] args) {
+    Dictionary dict = new Dictionary();
+    dict.addWord(new Word("a", "b"));
+    System.out.println("remove a");
+    dict.removeWord("a");
+    System.out.println(dict.findWordBasic("a"));
+    System.out.println(dict.findWordAdvance("a"));
+    dict.changeWord(new Word("a", "c"));
+    System.out.println("remove a");
+    System.out.println(dict.findWordBasic("a"));
+    System.out.println(dict.findWordAdvance("a"));
   }
 }
