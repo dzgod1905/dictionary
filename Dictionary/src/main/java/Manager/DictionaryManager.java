@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class DictionaryManager {
-  private Dictionary dictionary = new Dictionary();
+  private final Dictionary dictionary = new Dictionary();
 
   public void insertFromFile(){
     try (InputStream is = getClass().getResourceAsStream("/dictionaries.txt")) {
@@ -54,11 +54,11 @@ public class DictionaryManager {
   }
 
   public void addWord(Word word) {
-    dictionary.addWord(word);
+      dictionary.addWord(word);
   }
 
   public Word findWordBasic(String wordTarget) {
-    return dictionary.findWordBasic(wordTarget);
+      return dictionary.findWordBasic(wordTarget);
   }
 
   public Word findWordAdvance(String wordTarget) {
@@ -84,7 +84,7 @@ public class DictionaryManager {
   public DictionaryManager() {}
 
   public static void main(String[] args) {
-    DictionaryManager dictionaryManager = new DictionaryManager();
-    dictionaryManager.exportToFile();
+      DictionaryManager dictionaryManager = new DictionaryManager();
+      dictionaryManager.exportToFile();
   }
 }
