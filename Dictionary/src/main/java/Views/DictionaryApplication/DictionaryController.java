@@ -17,14 +17,14 @@ import java.util.ResourceBundle;
 public class DictionaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        searchWordButton.setOnAction(event -> showComponent("/Views/SearcherGUI.fxml"));
-//        addWordButton.setOnAction(event -> showComponent("/Views/AdditionGUI.fxml"));
-//        translateButton.setOnAction(event -> showComponent("/Views/TranslationGUI.fxml"));
+        searchWordButton.setOnAction(event -> showComponent("/Views/SearcherGUI.fxml"));
+        addWordButton.setOnAction(event -> showComponent("/Views/AdderGUI.fxml"));
+        translateButton.setOnAction(event -> showComponent("/Views/TranslatorGUI.fxml"));
 
         tooltip1.setShowDelay(Duration.seconds(0.2));
         tooltip2.setShowDelay(Duration.seconds(0.2));
         tooltip3.setShowDelay(Duration.seconds(0.2));
-//        showComponent("/Views/SearcherGUI.fxml");
+        showComponent("/Views/SearcherGUI.fxml");
 
         closeButton.setOnMouseClicked(e -> System.exit(0));
     }
@@ -41,7 +41,7 @@ public class DictionaryController implements Initializable {
                     getClass().getResource(path)));
             setNode(component);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println(e.getMessage());
         }
     }
 
