@@ -57,7 +57,7 @@ public class Dictionary {
 
     Word tmp = findWordAdvance(search);
     if (tmp == null)
-      return null;
+      return new ArrayList<>();
 
     Queue<Word> queue = new LinkedList<>();
     queue.add(tmp);
@@ -105,16 +105,12 @@ public class Dictionary {
     return new ArrayList<>(wordList);
   }
 
+  public int size() {
+    return wordList.size();
+  }
+
   public static void main(String[] args) {
     Dictionary dict = new Dictionary();
-    dict.addWord(new Word("a", "b"));
-    System.out.println("remove a");
-    dict.removeWord("a");
-    System.out.println(dict.findWordBasic("a"));
-    System.out.println(dict.findWordAdvance("a"));
-    dict.changeWord(new Word("a", "c"));
-    System.out.println("remove a");
-    System.out.println(dict.findWordBasic("a"));
-    System.out.println(dict.findWordAdvance("a"));
+
   }
 }

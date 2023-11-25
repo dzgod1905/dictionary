@@ -81,10 +81,15 @@ public class DictionaryManager {
     return dictionary.getWordList();
   }
 
+  public int getDictionarySize() {
+    return dictionary.size();
+  }
+
   public DictionaryManager() {}
 
   public static void main(String[] args) {
       DictionaryManager dictionaryManager = new DictionaryManager();
-      dictionaryManager.exportToFile();
+      dictionaryManager.insertFromFile();
+      System.out.println(dictionaryManager.findWordAdvance("gaming"));
   }
 }
