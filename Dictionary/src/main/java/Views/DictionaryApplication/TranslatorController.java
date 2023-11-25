@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 
 public class TranslatorController implements Initializable {
@@ -39,7 +40,7 @@ public class TranslatorController implements Initializable {
     private void handleOnClickTranslateButton() throws IOException {
         // api dich o day
         String urlStr = "https://script.google.com/macros/s/AKfycbzBKkxMK2SOdTwasuAqdTUXEqAGRn7XdmVN4jMAmIkFbwlT-NMkfyKkKnESiFPa1uE18A/exec" +
-                "?q=" + URLEncoder.encode(sourceLangField.getText(), "UTF-8") +
+                "?q=" + URLEncoder.encode(sourceLangField.getText(), StandardCharsets.UTF_8) +
                 "&target=" + toLanguage +
                 "&source=" + sourceLanguage;
         URL url = new URL(urlStr);
