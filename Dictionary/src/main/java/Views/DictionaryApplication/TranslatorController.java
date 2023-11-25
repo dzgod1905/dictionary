@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ResourceBundle;
 
 public class TranslatorController implements Initializable {
@@ -36,33 +37,22 @@ public class TranslatorController implements Initializable {
 
     @FXML
     private void handleOnClickTranslateButton() throws IOException {
-//        String rootAPI = "https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=" + sourceLanguage + "&tl=" + toLanguage + "&dt=t&q=";
-//        String srcText = sourceLangField.getText();
-//        String urlString = rootAPI + srcText;
-//        urlString = urlString.replace(" ", "%20");
-//
-//        URL url = new URL(urlString);
-//        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-//        con.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36");
-//        con.setRequestMethod("GET");
-//        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-//        String line;
-//        StringBuilder content = new StringBuilder();
-//        while ((line = in.readLine()) != null) content.append(line);
-//
-//        in.close();
-//        con.disconnect();
-//
-//        JSONParser jsonParse = new JSONParser();
-//        try {
-//            JSONObject data = (JSONObject) jsonParse.parse(content.toString());
-//            JSONArray sentences = (JSONArray) data.get("sentences");
-//            JSONObject jsonObject = (JSONObject) sentences.get(0);
-//            String trans = (String) jsonObject.get("trans");
-//            toLangField.setText(trans);
-//        } catch (Exception e) {
-//            System.err.println(e.getMessage());
-//        }
+        // api dich o day
+        String urlStr = "https://script.google.com/macros/s/AKfycbzBKkxMK2SOdTwasuAqdTUXEqAGRn7XdmVN4jMAmIkFbwlT-NMkfyKkKnESiFPa1uE18A/exec" +
+                "?q=" + URLEncoder.encode(sourceLangField.getText(), "UTF-8") +
+                "&target=" + toLanguage +
+                "&source=" + sourceLanguage;
+        URL url = new URL(urlStr);
+        StringBuilder response = new StringBuilder();
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestProperty("User-Agent", "Mozilla/5.0");
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+        toLangField.setText(response.toString());
     }
 
     @FXML
