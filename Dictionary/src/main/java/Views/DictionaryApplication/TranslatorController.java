@@ -18,7 +18,6 @@ import java.util.ResourceBundle;
 public class TranslatorController implements Initializable {
     private String sourceLanguage = "en";
     private String toLanguage = "vi";
-    private boolean isToVietnameseLang = true;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -38,7 +37,6 @@ public class TranslatorController implements Initializable {
 
     @FXML
     private void handleOnClickTranslateButton() throws IOException {
-        // api dich o day
         String urlStr = "https://script.google.com/macros/s/AKfycbzBKkxMK2SOdTwasuAqdTUXEqAGRn7XdmVN4jMAmIkFbwlT-NMkfyKkKnESiFPa1uE18A/exec" +
                 "?q=" + URLEncoder.encode(sourceLangField.getText(), StandardCharsets.UTF_8) +
                 "&target=" + toLanguage +
@@ -60,7 +58,7 @@ public class TranslatorController implements Initializable {
     private void handleOnClickSwitchToggle() {
         sourceLangField.clear();
         toLangField.clear();
-        if (isToVietnameseLang) {
+        if (sourceLanguage.equals("en")) {
             englishLabel.setLayoutX(443);
             vietnameseLabel.setLayoutX(97);
             sourceLangField.setPromptText("Hãy nhập gì đó...");
@@ -73,7 +71,6 @@ public class TranslatorController implements Initializable {
             sourceLanguage = "en";
             toLanguage = "vi";
         }
-        isToVietnameseLang = !isToVietnameseLang;
     }
 
     @FXML

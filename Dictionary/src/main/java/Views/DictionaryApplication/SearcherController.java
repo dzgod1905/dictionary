@@ -10,7 +10,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
 
 import javax.sound.sampled.*;
 import java.io.File;
@@ -23,16 +22,33 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SearcherController implements Initializable {
-    private final DictionaryManager dictionaryManager = new DictionaryManager();
+    private final DictionaryManager dictionaryManager = DictionaryManager.getInstance();
     ObservableList<String> list = FXCollections.observableArrayList();
     private final Warnings warnings = new Warnings();
 
+    private void resetButtons() {
+        soundButton.setDisable(true);
+        editButton.setDisable(true);
+        deleteButton.setDisable(true);
+
+        englishWord.setText("Nothing yet.");
+        explanation.setText("Explanation here.");
+        explanation.setEditable(false);
+    }
+
+    private void activateButtons(Word word) {
+        soundButton.setDisable(false);
+        editButton.setDisable(false);
+        deleteButton.setDisable(false);
+
+        englishWord.setText(word.getWordTarget());
+        explanation.setText(normalize(word.getWordExplain()));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        dictionaryManager.insertFromFile();
         System.out.println(dictionaryManager.getDictionarySize());
-
-        explanation.setEditable(false);
+        resetButtons();
         saveButton.setVisible(false);
         cancelButton.setVisible(false);
         notAvailableAlert.setVisible(false);
@@ -43,33 +59,38 @@ public class SearcherController implements Initializable {
         searchTerm.clear();
         notAvailableAlert.setVisible(false);
         cancelButton.setVisible(false);
+        list.clear();
+        listResults.setItems(list);
     }
 
     @FXML
     private void handleOnKeyTyped() {
         if (searchTerm.getText().isEmpty()) {
             cancelButton.setVisible(false);
+            list.clear();
+            listResults.setItems(list);
             return;
         }
         cancelButton.setVisible(true);
-        list.clear();
         String searchKey = searchTerm.getText().trim();
         List<String> searchedWords = new ArrayList<>();
         for (Word word : dictionaryManager.searchWord(searchKey)) {
             searchedWords.add(word.getWordTarget());
             // cap to display max 20 words
-            if (searchedWords.size() >= 20) {
-                break;
-            }
+            if (searchedWords.size() == 20) break;
         }
         list = FXCollections.observableList(searchedWords);
-        if (list.isEmpty()) {
-            notAvailableAlert.setVisible(true);
-        } else {
-            notAvailableAlert.setVisible(false);
-            headerList.setText("Kết quả");
-            listResults.setItems(list);
-        }
+        notAvailableAlert.setVisible(list.isEmpty());
+        listResults.setItems(list);
+    }
+
+    private String normalize(String input) {
+        input = input.replaceAll("<I>", "");
+        input = input.replaceAll("<Q>", "");
+        input = input.replaceAll("</I>", "");
+        input = input.replaceAll("</Q>", "");
+        input = input.replaceAll("<br />", "\n");
+        return input;
     }
 
     @FXML
@@ -77,12 +98,7 @@ public class SearcherController implements Initializable {
         String selectedWord = listResults.getSelectionModel().getSelectedItem();
         if (selectedWord != null) {
             Word word = dictionaryManager.findWordAdvance(selectedWord);
-            englishWord.setText(word.getWordTarget());
-            explanation.setText(word.getWordExplain());
-            headerOfExplanation.setVisible(true);
-            explanation.setVisible(true);
-            explanation.setEditable(false);
-            saveButton.setVisible(false);
+            activateButtons(word);
         }
     }
 
@@ -136,7 +152,7 @@ public class SearcherController implements Initializable {
     }
 
     @FXML
-    private void handleClickDeleteBtn() {
+    private void handleClickDeleteButton() {
         Alert alertWarning = warnings.alertWarning("Delete", "Bạn chắc chắn muốn xóa từ này?");
         alertWarning.getButtonTypes().add(ButtonType.CANCEL);
         Optional<ButtonType> option = alertWarning.showAndWait();
@@ -149,8 +165,7 @@ public class SearcherController implements Initializable {
                     break;
                 }
             listResults.setItems(list);
-            headerOfExplanation.setVisible(false);
-            explanation.setVisible(false);
+            resetButtons();
             warnings.showWarningInfo("Information", "Xóa thành công");
         } else warnings.showWarningInfo("Information", "Thay đổi không được công nhận");
     }
@@ -159,17 +174,17 @@ public class SearcherController implements Initializable {
     private TextField searchTerm;
 
     @FXML
+    private Button soundButton, editButton, deleteButton;
+
+    @FXML
     private Button cancelButton, saveButton;
 
     @FXML
-    private Label englishWord, headerList, notAvailableAlert;
+    private Label englishWord, notAvailableAlert;
 
     @FXML
     private TextArea explanation;
 
     @FXML
     private ListView<String> listResults;
-
-    @FXML
-    private Pane headerOfExplanation;
 }

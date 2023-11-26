@@ -11,13 +11,12 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AdderController implements Initializable {
-    private final DictionaryManager dictionaryManager = new DictionaryManager();
+    private final DictionaryManager dictionaryManager = DictionaryManager.getInstance();
     private final Warnings warnings = new Warnings();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        dictionaryManager.insertFromFile();
-        if (explanationInput.getText().isEmpty() || wordTargetInput.getText().isEmpty()) addButton.setDisable(true);
+        addButton.setDisable(true);
 
         wordTargetInput.setOnKeyTyped(keyEvent -> addButton.setDisable(explanationInput.getText().isEmpty() || wordTargetInput.getText().isEmpty()));
         explanationInput.setOnKeyTyped(keyEvent -> addButton.setDisable(explanationInput.getText().isEmpty() || wordTargetInput.getText().isEmpty()));
@@ -67,14 +66,13 @@ public class AdderController implements Initializable {
             resetInput();
         }
         else {
-            System.err.println("wrong");
             warnings.showWarningInfo("Information", "Thay đổi không được công nhận.");
         }
     }
 
     private void resetInput() {
-        wordTargetInput.setText("");
-        explanationInput.setText("");
+        wordTargetInput.setText(null);
+        explanationInput.setText(null);
     }
 
     private void showSuccess() {
