@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class DictionaryCommandline {
     private final DictionaryManager dictManager;
     public DictionaryCommandline() {
-        dictManager = new DictionaryManager();
+        dictManager = DictionaryManager.getInstance();
     }
 
     public void showAllWords() {

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="510.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.DictionaryApplication.SearcherController">
+<AnchorPane prefHeight="510.0" prefWidth="769.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.DictionaryApplication.SearcherController">
     <Pane layoutX="8.0" prefHeight="91.0" prefWidth="751.0" stylesheets="@../Utils/style.css">
         <ImageView fitHeight="120.0" fitWidth="110.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
             <Image url="@../Utils/images/logo.png" />
@@ -65,8 +65,8 @@
             <Pane layoutX="7.0" layoutY="51.0" prefHeight="355.0" prefWidth="490.0" styleClass="definition-wrapper" stylesheets="@../Utils/style.css">
                 <TextArea fx:id="explanation" layoutX="2.0" layoutY="54.0" prefHeight="298.0" prefWidth="486.0" styleClass="explanation-field" text="Explanation here." wrapText="true" />
                 <Pane layoutX="3.0" layoutY="52.0" opacity="0.74" prefHeight="2.0" prefWidth="483.0" styleClass="explanation-menu" />
-                <Pane fx:id="headerOfExplanation" layoutX="1.0" layoutY="6.0" prefHeight="45.0" prefWidth="488.0">
-                    <Button layoutX="280.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleClickSoundButton" prefHeight="32.0" prefWidth="60.0" styleClass="volume-button">
+                <Pane layoutX="1.0" layoutY="6.0" prefHeight="45.0" prefWidth="488.0">
+                    <Button fx:id="soundButton" layoutX="280.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleClickSoundButton" prefHeight="32.0" prefWidth="60.0" styleClass="volume-button">
                         <graphic>
                             <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                 <Image url="@../Utils/icons/speaker_64px.png" />
@@ -76,7 +76,7 @@
                             <Tooltip text="Phát âm" />
                         </tooltip>
                     </Button>
-                    <Button layoutX="349.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleClickEditButton" prefHeight="32.0" prefWidth="60.0" styleClass="edit-button" stylesheets="@../Utils/style.css">
+                    <Button fx:id="editButton" layoutX="349.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleClickEditButton" prefHeight="32.0" prefWidth="60.0" styleClass="edit-button" stylesheets="@../Utils/style.css">
                         <graphic>
                             <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" styleClass="editBtn">
                                 <Image url="@../Utils/icons/edit_64px.png" />
@@ -86,7 +86,7 @@
                             <Tooltip text="Cho phép chỉnh sửa" />
                         </tooltip>
                     </Button>
-                    <Button layoutX="418.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleClickDeleteBtn" prefHeight="32.0" prefWidth="60.0" styleClass="delete-button">
+                    <Button fx:id="deleteButton" layoutX="418.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleClickDeleteButton" prefHeight="32.0" prefWidth="60.0" styleClass="delete-button">
                         <graphic>
                             <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                 <Image url="@../Utils/icons/delete_bin_64px.png" />
@@ -124,7 +124,7 @@
         </AnchorPane>
         <AnchorPane layoutX="2.0" prefHeight="407.0" prefWidth="263.0">
             <Pane prefHeight="45.0" prefWidth="263.0" styleClass="title" stylesheets="@../Utils/style.css">
-                <Label fx:id="headerList" layoutX="18.0" prefHeight="45.0" prefWidth="230.0" text="Các kết quả liên quan" textFill="#d194c8">
+                <Label layoutX="18.0" prefHeight="45.0" prefWidth="230.0" text="Kết quả tìm được" textFill="#d194c8">
                     <font>
                         <Font name="System Bold Italic" size="16.5" />
                     </font>
@@ -135,7 +135,7 @@
                     </graphic>
                 </Label>
             </Pane>
-            <ListView fx:id="listResults" layoutX="1.5" layoutY="51.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#handleMouseClickAWord" prefHeight="355.0" prefWidth="260.0" styleClass="list-cell" stylesheets="@../Utils/style.css" />
+            <ListView fx:id="listResults" focusTraversable="false" layoutX="1.5" layoutY="51.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#handleMouseClickAWord" prefHeight="355.0" prefWidth="260.0" styleClass="list-cell" stylesheets="@../Utils/style.css" />
         </AnchorPane>
     </AnchorPane>
 </AnchorPane>

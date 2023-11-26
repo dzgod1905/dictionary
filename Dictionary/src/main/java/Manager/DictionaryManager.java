@@ -17,9 +17,23 @@ public class DictionaryManager {
     try (InputStream is = getClass().getResourceAsStream("/dictionaries.txt")) {
       BufferedReader br = new BufferedReader(new InputStreamReader(Objects.requireNonNull(is)));
       String line;
+      String wordTarget = null;
+      StringBuilder wordExplain = null;
       while ((line = br.readLine()) != null) {
-        String[] words = line.split("\t");
-        dictionary.addWord(new Word(words[0], words[1]));
+        if (line.contains("\t")) {
+          if (wordTarget != null) {
+            dictionary.addWord(new Word(wordTarget, wordExplain.toString()));
+          }
+          String[] words = line.split("\t");
+          wordTarget = words[0];
+          wordExplain = new StringBuilder(words[1]);
+        } else {
+          if (wordExplain == null) wordExplain = new StringBuilder();
+          wordExplain.append(line);
+        }
+      }
+      if (wordTarget != null) {
+        dictionary.addWord(new Word(wordTarget, wordExplain.toString()));
       }
     } catch (IOException e) {
       System.out.println(e.getMessage());
@@ -85,7 +99,18 @@ public class DictionaryManager {
     return dictionary.size();
   }
 
-  public DictionaryManager() {}
+  private static DictionaryManager instance;
+
+  private DictionaryManager() {
+    insertFromFile();
+  }
+
+  public static DictionaryManager getInstance() {
+    if (instance == null) {
+      instance = new DictionaryManager();
+    }
+    return instance;
+  }
 
   public static void main(String[] args) {
       DictionaryManager dictionaryManager = new DictionaryManager();
