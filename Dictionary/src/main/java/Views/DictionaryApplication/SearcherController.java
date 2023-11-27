@@ -25,6 +25,7 @@ public class SearcherController implements Initializable {
     private final DictionaryManager dictionaryManager = DictionaryManager.getInstance();
     ObservableList<String> list = FXCollections.observableArrayList();
     private final Warnings warnings = new Warnings();
+    private String tempMeaning = "";
 
     private void resetButtons() {
         soundButton.setVisible(false);
@@ -42,12 +43,13 @@ public class SearcherController implements Initializable {
         deleteButton.setVisible(true);
 
         englishWord.setText(word.getWordTarget());
-        explanation.setText(normalize(word.getWordExplain()));
+        explanation.setText(word.getWordExplain());
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Number of words: " + dictionaryManager.getDictionarySize());
+        // 138481 expected
         resetButtons();
         saveButton.setVisible(false);
         cancelButton.setVisible(false);
@@ -84,15 +86,6 @@ public class SearcherController implements Initializable {
         listResults.setItems(list);
     }
 
-    private String normalize(String input) {
-        input = input.replaceAll("<I>", "");
-        input = input.replaceAll("<Q>", "");
-        input = input.replaceAll("</I>", "");
-        input = input.replaceAll("</Q>", "");
-        input = input.replaceAll("<br />", "\n");
-        return input;
-    }
-
     @FXML
     private void handleMouseClickAWord() {
         String selectedWord = listResults.getSelectionModel().getSelectedItem();
@@ -104,6 +97,8 @@ public class SearcherController implements Initializable {
 
     @FXML
     private void handleClickEditButton() {
+        DictionaryController.EDITING = true;
+        tempMeaning = explanation.getText();
         explanation.setEditable(true);
         saveButton.setVisible(true);
         warnings.showWarningInfo("Information", "Bạn đã cho phép chỉnh sửa nghĩa từ này!");
@@ -140,7 +135,7 @@ public class SearcherController implements Initializable {
 
     @FXML
     private void handleClickSaveButton() {
-        Alert alertConfirmation = warnings.alertConfirmation("Update", "Bạn chắc chắn muốn cập nhật nghĩa từ này ?");
+        Alert alertConfirmation = warnings.alertConfirmation("Update", "Bạn chắc chắn muốn cập nhật nghĩa từ này?");
         Optional<ButtonType> option = alertConfirmation.showAndWait();
         if (option.isEmpty()) return;
         if (option.get() == ButtonType.OK) {
@@ -148,9 +143,16 @@ public class SearcherController implements Initializable {
             if (!expTemp.endsWith("\n")) expTemp += "\n";
             dictionaryManager.changeWord(new Word(englishWord.getText(), expTemp));
             warnings.showWarningInfo("Information", "Cập nhật thành công!");
-        } else warnings.showWarningInfo("Information", "Thay đổi không được công nhận!");
-        saveButton.setVisible(false);
+            DictionaryController.CHANGED = true;
+        }
+        else {
+            warnings.showWarningInfo("Information", "Thay đổi không được công nhận!");
+            explanation.setText(tempMeaning);
+        }
+
+        DictionaryController.EDITING = false;
         explanation.setEditable(false);
+        saveButton.setVisible(false);
     }
 
     @FXML

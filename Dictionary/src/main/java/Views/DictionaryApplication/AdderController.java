@@ -17,11 +17,16 @@ public class AdderController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addButton.setDisable(true);
-
-        wordTargetInput.setOnKeyTyped(keyEvent -> addButton.setDisable(explanationInput.getText().isEmpty() || wordTargetInput.getText().isEmpty()));
-        explanationInput.setOnKeyTyped(keyEvent -> addButton.setDisable(explanationInput.getText().isEmpty() || wordTargetInput.getText().isEmpty()));
-
         successAlert.setVisible(false);
+
+        wordTargetInput.setOnKeyTyped(keyEvent -> {
+            DictionaryController.EDITING = !(explanationInput.getText().isEmpty() && wordTargetInput.getText().isEmpty());
+            addButton.setDisable(explanationInput.getText().isEmpty() || wordTargetInput.getText().isEmpty());
+        });
+        explanationInput.setOnKeyTyped(keyEvent -> {
+            DictionaryController.EDITING = !(explanationInput.getText().isEmpty() && wordTargetInput.getText().isEmpty());
+            addButton.setDisable(explanationInput.getText().isEmpty() || wordTargetInput.getText().isEmpty());
+        });
     }
 
     @FXML
@@ -62,7 +67,6 @@ public class AdderController implements Initializable {
                 showSuccess();
             }
             System.out.println(dictionaryManager.findWordAdvance(englishWord));
-            // add exportToFile later
             addButton.setDisable(true);
             resetInput();
         }
@@ -72,11 +76,13 @@ public class AdderController implements Initializable {
     }
 
     private void resetInput() {
+        DictionaryController.EDITING = false;
         wordTargetInput.setText(null);
         explanationInput.setText(null);
     }
 
     private void showSuccess() {
+        DictionaryController.CHANGED = true;
         successAlert.setVisible(true);
         setTimeout(() -> successAlert.setVisible(false));
     }
