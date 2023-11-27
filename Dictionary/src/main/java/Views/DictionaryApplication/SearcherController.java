@@ -27,9 +27,9 @@ public class SearcherController implements Initializable {
     private final Warnings warnings = new Warnings();
 
     private void resetButtons() {
-        soundButton.setDisable(true);
-        editButton.setDisable(true);
-        deleteButton.setDisable(true);
+        soundButton.setVisible(false);
+        editButton.setVisible(false);
+        deleteButton.setVisible(false);
 
         englishWord.setText("Nothing yet.");
         explanation.setText("Explanation here.");
@@ -37,9 +37,9 @@ public class SearcherController implements Initializable {
     }
 
     private void activateButtons(Word word) {
-        soundButton.setDisable(false);
-        editButton.setDisable(false);
-        deleteButton.setDisable(false);
+        soundButton.setVisible(true);
+        editButton.setVisible(true);
+        deleteButton.setVisible(true);
 
         englishWord.setText(word.getWordTarget());
         explanation.setText(normalize(word.getWordExplain()));
@@ -47,7 +47,7 @@ public class SearcherController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(dictionaryManager.getDictionarySize());
+        System.out.println("Number of words: " + dictionaryManager.getDictionarySize());
         resetButtons();
         saveButton.setVisible(false);
         cancelButton.setVisible(false);
@@ -144,8 +144,10 @@ public class SearcherController implements Initializable {
         Optional<ButtonType> option = alertConfirmation.showAndWait();
         if (option.isEmpty()) return;
         if (option.get() == ButtonType.OK) {
-            dictionaryManager.changeWord(new Word(englishWord.getText(), explanation.getText()));
-            warnings.showWarningInfo("Information", "Cập nhập thành công!");
+            String expTemp = explanation.getText();
+            if (!expTemp.endsWith("\n")) expTemp += "\n";
+            dictionaryManager.changeWord(new Word(englishWord.getText(), expTemp));
+            warnings.showWarningInfo("Information", "Cập nhật thành công!");
         } else warnings.showWarningInfo("Information", "Thay đổi không được công nhận!");
         saveButton.setVisible(false);
         explanation.setEditable(false);

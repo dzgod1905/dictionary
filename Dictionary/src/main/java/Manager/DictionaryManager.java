@@ -14,22 +14,21 @@ public class DictionaryManager {
   private final Dictionary dictionary = new Dictionary();
 
   public void insertFromFile(){
-    try (InputStream is = getClass().getResourceAsStream("/dictionaries.txt")) {
+    try (InputStream is = getClass().getResourceAsStream("/Utils/dictionaries.txt")) {
       BufferedReader br = new BufferedReader(new InputStreamReader(Objects.requireNonNull(is)));
       String line;
       String wordTarget = null;
       StringBuilder wordExplain = null;
       while ((line = br.readLine()) != null) {
-        if (line.contains("\t")) {
+        if (line.startsWith("|")) {
           if (wordTarget != null) {
             dictionary.addWord(new Word(wordTarget, wordExplain.toString()));
           }
-          String[] words = line.split("\t");
-          wordTarget = words[0];
-          wordExplain = new StringBuilder(words[1]);
+          wordTarget = line.replace("|", "");
+          wordExplain = new StringBuilder();
         } else {
           if (wordExplain == null) wordExplain = new StringBuilder();
-          wordExplain.append(line);
+          wordExplain.append(line).append("\n");
         }
       }
       if (wordTarget != null) {
@@ -41,11 +40,12 @@ public class DictionaryManager {
   }
 
   public void exportToFile() {
-    try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("./Dictionary/src/main/resources/dictionaries.txt"))) {
+    try (BufferedWriter bufferedWriter = new BufferedWriter
+            (new FileWriter("./Dictionary/src/main/resources/Utils/dictionaries.txt"))) {
       List<Word> wordList = dictionary.getWordList();
       wordList.sort(Comparator.comparing(Word::getWordTarget));
       for (Word word : wordList) {
-        bufferedWriter.write(word.getWordTarget() + "\t" + word.getWordExplain() + "\n");
+        bufferedWriter.write("|" + word.getWordTarget() + "\n" + word.getWordExplain());
       }
     } catch (IOException e) {
       System.out.println(e.getMessage());
