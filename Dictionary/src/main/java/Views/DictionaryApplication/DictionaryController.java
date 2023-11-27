@@ -1,5 +1,6 @@
 package Views.DictionaryApplication;
 
+import Manager.DictionaryManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +16,8 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class DictionaryController implements Initializable {
+    private String current = "";
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         searchWordButton.setOnAction(event -> showComponent("/Views/SearcherGUI.fxml"));
@@ -26,7 +29,12 @@ public class DictionaryController implements Initializable {
         tooltip3.setShowDelay(Duration.seconds(0.2));
         showComponent("/Views/SearcherGUI.fxml");
 
-        closeButton.setOnMouseClicked(e -> System.exit(0));
+        closeButton.setOnMouseClicked(e -> quit());
+    }
+
+    private void quit() {
+        DictionaryManager.getInstance().exportToFile();
+        System.exit(0);
     }
 
     private void setNode(Node node) {
@@ -36,9 +44,11 @@ public class DictionaryController implements Initializable {
 
     @FXML
     private void showComponent(String path) {
+        if (current.equals(path)) return;
+        current = path;
         try {
             AnchorPane component = FXMLLoader.load(Objects.requireNonNull(
-                    getClass().getResource(path)));
+                    getClass().getResource(current)));
             setNode(component);
         } catch (IOException e) {
             System.err.println(e.getMessage());

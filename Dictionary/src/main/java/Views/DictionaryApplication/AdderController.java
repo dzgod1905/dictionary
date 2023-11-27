@@ -33,6 +33,7 @@ public class AdderController implements Initializable {
         if (option.get() == ButtonType.OK) {
             String englishWord = wordTargetInput.getText().trim();
             String meaning = explanationInput.getText().trim();
+            if (!meaning.endsWith("\n")) meaning += "\n";
             Word word = new Word(englishWord, meaning);
             Word prevWord = dictionaryManager.findWordAdvance(englishWord);
 
@@ -51,7 +52,7 @@ public class AdderController implements Initializable {
                     showSuccess();
                 }
                 if (selection.get() == insertButton) {
-                    prevWord.setWordExplain(prevWord.getWordExplain() + "\n" + meaning);
+                    prevWord.setWordExplain(prevWord.getWordExplain() + meaning);
                     showSuccess();
                 }
                 if (selection.get() == ButtonType.CANCEL)
