@@ -29,6 +29,7 @@ public class DictionaryController implements Initializable {
         searchWordButton.setOnAction(event -> showComponent("/Views/SearcherGUI.fxml"));
         addWordButton.setOnAction(event -> showComponent("/Views/AdderGUI.fxml"));
         translateButton.setOnAction(event -> showComponent("/Views/TranslatorGUI.fxml"));
+        gameButton.setOnAction(event -> showComponent("/Views/GameGUI.fxml"));
 
         tooltip1.setShowDelay(Duration.seconds(0.2));
         tooltip2.setShowDelay(Duration.seconds(0.2));
@@ -80,7 +81,7 @@ public class DictionaryController implements Initializable {
     private Tooltip tooltip1, tooltip2, tooltip3, tooltip4;
 
     @FXML
-    private Button addWordButton, translateButton, searchWordButton, closeButton;
+    private Button addWordButton, translateButton, searchWordButton, closeButton, gameButton;
 
     @FXML
     private AnchorPane container;

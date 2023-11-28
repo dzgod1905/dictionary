@@ -259,3 +259,22 @@
 .exit-button:hover{
      -fx-background-color: #b22a00;
 }
+
+.gameTextArea{
+    -fx-border-color: #7071E8;
+    -fx-border-radius: 4;
+    -fx-alignment: baseline-center;
+    -fx-background-color: #7071E8;
+}
+
+.gameButtonContainer{
+    -fx-background-color: transparent;
+}
+
+.gameButtonEnter {
+    -fx-background-radius: 10;
+}
+
+.gameCharArea{
+    -fx-background-color: transparent;
+}
