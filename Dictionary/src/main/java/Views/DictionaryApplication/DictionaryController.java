@@ -33,6 +33,7 @@ public class DictionaryController implements Initializable {
         tooltip1.setShowDelay(Duration.seconds(0.2));
         tooltip2.setShowDelay(Duration.seconds(0.2));
         tooltip3.setShowDelay(Duration.seconds(0.2));
+        tooltip4.setShowDelay(Duration.seconds(0.2));
         showComponent("/Views/SearcherGUI.fxml");
 
         closeButton.setOnMouseClicked(e -> quit());
@@ -76,7 +77,7 @@ public class DictionaryController implements Initializable {
     }
 
     @FXML
-    private Tooltip tooltip1, tooltip2, tooltip3;
+    private Tooltip tooltip1, tooltip2, tooltip3, tooltip4;
 
     @FXML
     private Button addWordButton, translateButton, searchWordButton, closeButton;
