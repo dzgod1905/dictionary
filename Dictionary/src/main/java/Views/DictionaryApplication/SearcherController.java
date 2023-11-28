@@ -171,6 +171,8 @@ public class SearcherController implements Initializable {
             listResults.setItems(list);
             resetButtons();
             warnings.showWarningInfo("Information", "Xóa thành công");
+
+            DictionaryController.CHANGED = true;
         } else warnings.showWarningInfo("Information", "Thay đổi không được công nhận");
     }
 
