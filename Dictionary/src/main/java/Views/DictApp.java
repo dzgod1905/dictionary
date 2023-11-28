@@ -19,7 +19,7 @@ public class DictApp extends Application {
     public void start(final Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(
                 getClass().getResource("/Views/DictionaryGUI.fxml")));
-        stage.getIcons().add(new Image("/Utils/icons/duolingo.png"));
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResource("/Utils/icons/duolingo.png")).toExternalForm()));
         stage.setTitle("Learning English");
         stage.initStyle(StageStyle.TRANSPARENT);
         root.setOnMousePressed(event -> {
