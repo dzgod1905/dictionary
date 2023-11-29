@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 
 public class SearcherController implements Initializable {
     private final DictionaryManager dictionaryManager = DictionaryManager.getInstance();
-    ObservableList<String> list = FXCollections.observableArrayList();
+    private ObservableList<String> list = FXCollections.observableArrayList();
     private final Warnings warnings = new Warnings();
     private String tempMeaning = "";
 
@@ -79,7 +79,7 @@ public class SearcherController implements Initializable {
         for (Word word : dictionaryManager.searchWord(searchKey)) {
             searchedWords.add(word.getWordTarget());
             // cap to display max 20 words
-            if (searchedWords.size() == 20) break;
+            // if (searchedWords.size() == 20) break;
         }
         list = FXCollections.observableList(searchedWords);
         notAvailableAlert.setVisible(list.isEmpty());

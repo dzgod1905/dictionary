@@ -9,47 +9,72 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="510.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.DictionaryApplication.GameController">
-  <children>
-      <TextField alignment="CENTER" disable="true" editable="false" layoutX="36.0" layoutY="38.0" opacity="0.95" prefHeight="74.0" prefWidth="395.0" promptText="Your word should be more than 4 letters.">
-         <font>
-            <Font name="Consolas" size="17.0" />
-         </font>
-      </TextField>
-      <TextField alignment="CENTER" disable="true" editable="false" layoutX="448.0" layoutY="38.0" opacity="0.95" prefHeight="74.0" prefWidth="290.0" promptText="Your score should be here.">
-         <font>
-            <Font name="Consolas" size="17.0" />
-         </font></TextField>
-      <ListView disable="true" layoutX="448.0" layoutY="131.0" opacity="0.95" prefHeight="345.0" prefWidth="290.0" />
-      <Button depthTest="DISABLE" layoutX="176.0" layoutY="251.0" mnemonicParsing="false" prefWidth="100.0" styleClass="gameButtonContainer" stylesheets="@../Utils/style.css">
-         <graphic>
-          <Polygon fill="#ffd924" stroke="BLACK" strokeType="INSIDE">
-            <points>
-              <Double fx:value="-50.0" />
-              <Double fx:value="30.0" />
-              <Double fx:value="0.0" />
-              <Double fx:value="60.0" />
-              <Double fx:value="50.0" />
-              <Double fx:value="30.0" />
-              <Double fx:value="50.0" />
-              <Double fx:value="-30.0" />
-              <Double fx:value="0.0" />
-              <Double fx:value="-60.0" />
-              <Double fx:value="-50.0" />
-              <Double fx:value="-30.0" />
-            </points>
+<AnchorPane prefHeight="510.0" prefWidth="769.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.DictionaryApplication.GameController">
+    <TextField fx:id="inputTextField" alignment="CENTER" disable="true" editable="false" layoutX="36.0" layoutY="38.0" opacity="0.95" prefHeight="64.0" prefWidth="395.0" promptText="4 letters long minimum.">
+        <font>
+          <Font name="Consolas" size="20.0" />
+        </font>
+    </TextField>
+    <TextArea fx:id="scoreTextArea" disable="true" layoutX="448.0" layoutY="38.0" opacity="0.95" prefHeight="64.0" prefWidth="290.0" promptText="Your score should be here.">
+        <font>
+          <Font name="Consolas" size="19.0" />
+        </font>
+    </TextArea>
+    <ListView fx:id="wordsFound" disable="true" layoutX="448.0" layoutY="131.0" opacity="0.95" prefHeight="345.0" prefWidth="290.0" />
+    <Button fx:id="Button0" depthTest="DISABLE" layoutX="176.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleClickButton0" prefWidth="100.0" styleClass="gameButtonContainer" stylesheets="@../Utils/style.css">
+        <graphic>
+            <Polygon fill="#ffd924" stroke="BLACK" strokeType="INSIDE">
+                <points>
+                    <Double fx:value="-50.0" />
+                    <Double fx:value="30.0" />
+                    <Double fx:value="0.0" />
+                    <Double fx:value="60.0" />
+                    <Double fx:value="50.0" />
+                    <Double fx:value="30.0" />
+                    <Double fx:value="50.0" />
+                    <Double fx:value="-30.0" />
+                    <Double fx:value="0.0" />
+                    <Double fx:value="-60.0" />
+                    <Double fx:value="-50.0" />
+                    <Double fx:value="-30.0" />
+                </points>
+            </Polygon>
+        </graphic>
+    </Button>
+    <TextArea fx:id="charArea0" blendMode="DARKEN" depthTest="ENABLE" disable="true" editable="false" layoutX="207.0" layoutY="252.0" opacity="0.95" prefHeight="45.0" prefWidth="43.0" styleClass="gameCharArea" stylesheets="@../Utils/style.css" text="A">
+        <font>
+          <Font name="Consolas Bold" size="30.0" />
+        </font>
+    </TextArea>
+    <Button fx:id="Button6" blendMode="DARKEN" layoutX="229.0" layoutY="311.0" mnemonicParsing="false" onAction="#handleClickButton6" styleClass="gameButtonContainer" stylesheets="@../Utils/style.css" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+        <graphic>
+          <Polygon fill="#e4eaf3" stroke="BLACK" strokeType="INSIDE">
+              <points>
+                  <Double fx:value="-50.0" />
+                  <Double fx:value="30.0" />
+                  <Double fx:value="0.0" />
+                  <Double fx:value="60.0" />
+                  <Double fx:value="50.0" />
+                  <Double fx:value="30.0" />
+                  <Double fx:value="50.0" />
+                  <Double fx:value="-30.0" />
+                  <Double fx:value="0.0" />
+                  <Double fx:value="-60.0" />
+                  <Double fx:value="-50.0" />
+                  <Double fx:value="-30.0" />
+              </points>
           </Polygon>
-         </graphic>
-      </Button>
-      <TextArea blendMode="DARKEN" depthTest="ENABLE" disable="true" editable="false" layoutX="207.0" layoutY="288.0" opacity="0.95" prefHeight="45.0" prefWidth="43.0" styleClass="gameCharArea" stylesheets="@../Utils/style.css" text="T">
-         <font>
-            <Font name="Consolas Bold" size="30.0" />
-         </font>
-      </TextArea>
-      <Button blendMode="DARKEN" layoutX="229.0" layoutY="347.0" mnemonicParsing="false" styleClass="gameButtonContainer" stylesheets="@../Utils/style.css" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
-         <graphic>
-            <Polygon fill="#e4eaf3" stroke="BLACK" strokeType="INSIDE">
-               <points>
+        </graphic>
+    </Button>
+    <TextArea fx:id="charArea6" blendMode="DARKEN" depthTest="DISABLE" disable="true" layoutX="260.0" layoutY="347.0" opacity="0.95" prefHeight="45.0" prefWidth="43.0" styleClass="gameCharArea" stylesheets="@../Utils/style.css" text="G">
+        <font>
+          <Font name="Consolas Bold" size="30.0" />
+        </font>
+    </TextArea>
+    <Button fx:id="Button5" blendMode="DARKEN" layoutX="282.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleClickButton5" prefHeight="128.0" prefWidth="116.0" styleClass="gameButtonContainer" stylesheets="@../Utils/style.css" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+        <graphic>
+          <Polygon fill="#e4eaf3" stroke="BLACK" strokeType="INSIDE">
+              <points>
                   <Double fx:value="-50.0" />
                   <Double fx:value="30.0" />
                   <Double fx:value="0.0" />
@@ -62,19 +87,19 @@
                   <Double fx:value="-60.0" />
                   <Double fx:value="-50.0" />
                   <Double fx:value="-30.0" />
-               </points>
-            </Polygon>
-         </graphic>
-      </Button>
-      <TextArea blendMode="DARKEN" depthTest="DISABLE" disable="true" layoutX="260.0" layoutY="383.0" opacity="0.95" prefHeight="45.0" prefWidth="43.0" styleClass="gameCharArea" stylesheets="@../Utils/style.css" text="T">
-         <font>
-            <Font name="Consolas Bold" size="30.0" />
-         </font>
-      </TextArea>
-      <Button blendMode="DARKEN" layoutX="282.0" layoutY="252.0" mnemonicParsing="false" prefHeight="128.0" prefWidth="116.0" styleClass="gameButtonContainer" stylesheets="@../Utils/style.css" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
-         <graphic>
-            <Polygon fill="#e4eaf3" stroke="BLACK" strokeType="INSIDE">
-               <points>
+              </points>
+          </Polygon>
+        </graphic>
+    </Button>
+    <TextArea fx:id="charArea5" blendMode="DARKEN" depthTest="DISABLE" disable="true" editable="false" layoutX="314.0" layoutY="251.0" opacity="0.95" prefHeight="45.0" prefWidth="43.0" styleClass="gameCharArea" stylesheets="@../Utils/style.css" text="F">
+        <font>
+          <Font name="Consolas Bold" size="30.0" />
+        </font>
+    </TextArea>
+    <Button fx:id="Button4" blendMode="DARKEN" layoutX="230.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleClickButton4" styleClass="gameButtonContainer" stylesheets="@../Utils/style.css" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+        <graphic>
+          <Polygon fill="#e4eaf3" stroke="BLACK" strokeType="INSIDE">
+              <points>
                   <Double fx:value="-50.0" />
                   <Double fx:value="30.0" />
                   <Double fx:value="0.0" />
@@ -87,19 +112,19 @@
                   <Double fx:value="-60.0" />
                   <Double fx:value="-50.0" />
                   <Double fx:value="-30.0" />
-               </points>
-            </Polygon>
-         </graphic>
-      </Button>
-      <TextArea blendMode="DARKEN" depthTest="DISABLE" disable="true" editable="false" layoutX="314.0" layoutY="287.0" opacity="0.95" prefHeight="45.0" prefWidth="43.0" styleClass="gameCharArea" stylesheets="@../Utils/style.css" text="T">
-         <font>
-            <Font name="Consolas Bold" size="30.0" />
-         </font>
-      </TextArea>
-      <Button blendMode="DARKEN" layoutX="230.0" layoutY="156.0" mnemonicParsing="false" styleClass="gameButtonContainer" stylesheets="@../Utils/style.css" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
-         <graphic>
-            <Polygon fill="#e4eaf3" stroke="BLACK" strokeType="INSIDE">
-               <points>
+              </points>
+          </Polygon>
+        </graphic>
+    </Button>
+    <TextArea fx:id="charArea4" blendMode="DARKEN" depthTest="DISABLE" disable="true" editable="false" layoutX="262.0" layoutY="156.0" opacity="0.95" prefHeight="50.0" prefWidth="46.0" styleClass="gameCharArea" stylesheets="@../Utils/style.css" text="E">
+        <font>
+          <Font name="Consolas Bold" size="30.0" />
+        </font>
+    </TextArea>
+    <Button fx:id="Button3" blendMode="DARKEN" layoutX="122.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleClickButton3" styleClass="gameButtonContainer" stylesheets="@../Utils/style.css" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+        <graphic>
+          <Polygon fill="#e4eaf3" stroke="BLACK" strokeType="INSIDE">
+              <points>
                   <Double fx:value="-50.0" />
                   <Double fx:value="30.0" />
                   <Double fx:value="0.0" />
@@ -112,19 +137,19 @@
                   <Double fx:value="-60.0" />
                   <Double fx:value="-50.0" />
                   <Double fx:value="-30.0" />
-               </points>
-            </Polygon>
-         </graphic>
-      </Button>
-      <TextArea blendMode="DARKEN" depthTest="DISABLE" disable="true" editable="false" layoutX="262.0" layoutY="192.0" opacity="0.95" prefHeight="50.0" prefWidth="46.0" styleClass="gameCharArea" stylesheets="@../Utils/style.css" text="T">
-         <font>
-            <Font name="Consolas Bold" size="30.0" />
-         </font>
-      </TextArea>
-      <Button blendMode="DARKEN" layoutX="122.0" layoutY="156.0" mnemonicParsing="false" styleClass="gameButtonContainer" stylesheets="@../Utils/style.css" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
-         <graphic>
-            <Polygon fill="#e4eaf3" stroke="BLACK" strokeType="INSIDE">
-               <points>
+              </points>
+          </Polygon>
+        </graphic>
+    </Button>
+    <TextArea fx:id="charArea3" blendMode="DARKEN" depthTest="DISABLE" disable="true" editable="false" layoutX="153.0" layoutY="158.0" opacity="0.95" prefHeight="45.0" prefWidth="43.0" styleClass="gameCharArea" stylesheets="@../Utils/style.css" text="D">
+        <font>
+          <Font name="Consolas Bold" size="30.0" />
+        </font>
+    </TextArea>
+    <Button fx:id="Button2" blendMode="DARKEN" layoutX="70.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleClickButton2" styleClass="gameButtonContainer" stylesheets="@../Utils/style.css" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+        <graphic>
+          <Polygon fill="#e4eaf3" stroke="BLACK" strokeType="INSIDE">
+              <points>
                   <Double fx:value="-50.0" />
                   <Double fx:value="30.0" />
                   <Double fx:value="0.0" />
@@ -137,19 +162,19 @@
                   <Double fx:value="-60.0" />
                   <Double fx:value="-50.0" />
                   <Double fx:value="-30.0" />
-               </points>
-            </Polygon>
-         </graphic>
-      </Button>
-      <TextArea blendMode="DARKEN" depthTest="DISABLE" disable="true" editable="false" layoutX="153.0" layoutY="194.0" opacity="0.95" prefHeight="45.0" prefWidth="43.0" styleClass="gameCharArea" stylesheets="@../Utils/style.css" text="T">
-         <font>
-            <Font name="Consolas Bold" size="30.0" />
-         </font>
-      </TextArea>
-      <Button blendMode="DARKEN" layoutX="70.0" layoutY="251.0" mnemonicParsing="false" styleClass="gameButtonContainer" stylesheets="@../Utils/style.css" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
-         <graphic>
-            <Polygon fill="#e4eaf3" stroke="BLACK" strokeType="INSIDE">
-               <points>
+              </points>
+          </Polygon>
+        </graphic>
+    </Button>
+    <TextArea fx:id="charArea2" blendMode="DARKEN" depthTest="DISABLE" disable="true" editable="false" layoutX="101.0" layoutY="252.0" opacity="0.95" prefHeight="45.0" prefWidth="43.0" styleClass="gameCharArea" stylesheets="@../Utils/style.css" text="C">
+        <font>
+          <Font name="Consolas Bold" size="30.0" />
+        </font>
+    </TextArea>
+    <Button fx:id="Button1" blendMode="DARKEN" layoutX="122.0" layoutY="311.0" mnemonicParsing="false" onAction="#handleClickButton1" styleClass="gameButtonContainer" stylesheets="@../Utils/style.css" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+        <graphic>
+          <Polygon fill="#e4eaf3" stroke="BLACK" strokeType="INSIDE">
+              <points>
                   <Double fx:value="-50.0" />
                   <Double fx:value="30.0" />
                   <Double fx:value="0.0" />
@@ -162,49 +187,33 @@
                   <Double fx:value="-60.0" />
                   <Double fx:value="-50.0" />
                   <Double fx:value="-30.0" />
-               </points>
-            </Polygon>
-         </graphic>
-      </Button>
-      <TextArea blendMode="DARKEN" depthTest="DISABLE" disable="true" editable="false" layoutX="101.0" layoutY="288.0" opacity="0.95" prefHeight="45.0" prefWidth="43.0" styleClass="gameCharArea" stylesheets="@../Utils/style.css" text="T">
-         <font>
-            <Font name="Consolas Bold" size="30.0" />
-         </font>
-      </TextArea>
-      <Button blendMode="DARKEN" layoutX="122.0" layoutY="347.0" mnemonicParsing="false" styleClass="gameButtonContainer" stylesheets="@../Utils/style.css" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
-         <graphic>
-            <Polygon fill="#e4eaf3" stroke="BLACK" strokeType="INSIDE">
-               <points>
-                  <Double fx:value="-50.0" />
-                  <Double fx:value="30.0" />
-                  <Double fx:value="0.0" />
-                  <Double fx:value="60.0" />
-                  <Double fx:value="50.0" />
-                  <Double fx:value="30.0" />
-                  <Double fx:value="50.0" />
-                  <Double fx:value="-30.0" />
-                  <Double fx:value="0.0" />
-                  <Double fx:value="-60.0" />
-                  <Double fx:value="-50.0" />
-                  <Double fx:value="-30.0" />
-               </points>
-            </Polygon>
-         </graphic>
-      </Button>
-      <TextArea blendMode="DARKEN" depthTest="DISABLE" disable="true" editable="false" layoutX="153.0" layoutY="383.0" opacity="0.95" prefHeight="45.0" prefWidth="43.0" styleClass="gameCharArea" stylesheets="@../Utils/style.css" text="T">
-         <font>
-            <Font name="Consolas Bold" size="30.0" />
-         </font>
-      </TextArea>
-      <Button layoutX="28.0" layoutY="442.0" mnemonicParsing="false" styleClass="gameButtonEnter" stylesheets="@../Utils/style.css" text="Delete">
-         <font>
-            <Font name="Consolas" size="17.0" />
-         </font>
-      </Button>
-      <Button layoutX="356.0" layoutY="442.0" mnemonicParsing="false" styleClass="gameButtonEnter" stylesheets="@../Utils/style.css" text="Enter">
-         <font>
-            <Font name="Consolas" size="17.0" />
-         </font>
-      </Button>
-  </children>
+              </points>
+          </Polygon>
+        </graphic>
+    </Button>
+    <TextArea fx:id="charArea1" blendMode="DARKEN" depthTest="DISABLE" disable="true" editable="false" layoutX="153.0" layoutY="347.0" opacity="0.95" prefHeight="45.0" prefWidth="43.0" styleClass="gameCharArea" stylesheets="@../Utils/style.css" text="B">
+        <font>
+          <Font name="Consolas Bold" size="30.0" />
+        </font>
+    </TextArea>
+    <Button fx:id="deleteButton" layoutX="30.0" layoutY="445.0" mnemonicParsing="false" onAction="#handleClickDeleteButton" styleClass="gameButtonEnter" stylesheets="@../Utils/style.css" text="Delete">
+        <font>
+          <Font name="Consolas" size="17.0" />
+        </font>
+    </Button>
+    <Button fx:id="enterButton" layoutX="355.0" layoutY="445.0" mnemonicParsing="false" onAction="#handleClickEnterButton" styleClass="gameButtonEnter" stylesheets="@../Utils/style.css" text="Enter">
+        <font>
+          <Font name="Consolas" size="17.0" />
+        </font>
+    </Button>
+    <Button fx:id="replayButton" layoutX="350.0" layoutY="125.0" mnemonicParsing="false" onAction="#handleClickReplayButton" styleClass="gameButtonEnter" stylesheets="@../Utils/style.css" text="Replay">
+        <font>
+          <Font name="Consolas" size="17.0" />
+        </font>
+    </Button>
+   <Button layoutX="36.0" layoutY="123.0" mnemonicParsing="false" onAction="#handleClickHelpButton" prefHeight="0.0" prefWidth="69.0" styleClass="gameButtonEnter" stylesheets="@../Utils/style.css" text="Help">
+      <font>
+         <Font name="Consolas" size="17.0" />
+      </font>
+   </Button>
 </AnchorPane>
