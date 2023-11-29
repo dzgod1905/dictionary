@@ -16,7 +16,7 @@
 <AnchorPane prefHeight="510.0" prefWidth="769.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.DictionaryApplication.SearcherController">
     <Pane layoutX="8.0" prefHeight="91.0" prefWidth="751.0" stylesheets="@../Utils/style.css">
         <ImageView fitHeight="120.0" fitWidth="110.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
-            <Image url="@../Utils/images/logo.png" />
+            <Image url="@../Utils/images/duoLogo.png" />
         </ImageView>
         <Label fx:id="notAvailableAlert" alignment="CENTER" layoutX="250.0" layoutY="57.0" opacity="0.9" prefHeight="20.0" prefWidth="230.0" styleClass="warning-alert" stylesheets="@../Utils/style.css" text="Rất tiếc từ điển không cung cấp từ này">
             <graphic>
@@ -44,8 +44,8 @@
         <ImageView fitHeight="78.0" fitWidth="110.0" layoutX="617.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../Utils/images/img1.jpg" />
         </ImageView>
-        <ImageView fitHeight="72.0" fitWidth="110.0" layoutX="12.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../Utils/images/logo.png" />
+        <ImageView fitHeight="100.0" fitWidth="100.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../Utils/images/duoLogo.png" />
         </ImageView>
     </Pane>
     <AnchorPane layoutY="92.0" prefHeight="415.0" prefWidth="769.0" styleClass="main-searcher" stylesheets="@../Utils/style.css">

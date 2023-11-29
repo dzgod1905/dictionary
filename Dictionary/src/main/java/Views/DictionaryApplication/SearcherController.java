@@ -31,6 +31,8 @@ public class SearcherController implements Initializable {
         soundButton.setVisible(false);
         editButton.setVisible(false);
         deleteButton.setVisible(false);
+        saveButton.setVisible(false);
+        DictionaryController.EDITING = false;
 
         englishWord.setText("Nothing yet.");
         explanation.setText("Explanation here.");

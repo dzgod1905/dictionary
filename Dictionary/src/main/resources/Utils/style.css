@@ -2,9 +2,9 @@
     src: url("fonts/Poppins-Regular.ttf"),
 }
 .root{
-     -fx-background-color: linear-gradient(to top right,#7071E8, #44008b);
-     -fx-background-radius: 5;
-     -fx-border-radius: 5;
+    -fx-background-color: linear-gradient(to top right,#7071E8, #44008b);
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
 }
 .container{
     -fx-background-color:  #fff;
@@ -15,17 +15,16 @@
     -fx-padding: 0;
 }
 .menu-item{
- -fx-background-color: transparent;
- -fx-background-radius: 30;
- -fx-padding: 0 0 0 10;
- -fx-background-insets: 0;
- -fx-text-fill: #fff;
- -fx-font-weight: bold;
- -fx-font-family: "Poppins";
+    -fx-background-color: transparent;
+    -fx-background-radius: 30;
+    -fx-padding: 0 0 0 10;
+    -fx-background-insets: 0;
+    -fx-text-fill: #fff;
+    -fx-font-weight: bold;
+    -fx-font-family: "Poppins";
 }
-.menu-item:hover,
-.menu-item:focused{
- -fx-background-color: #c6a1d6;
+.menu-item:hover{
+    -fx-background-color: #c6a1d6;
 }
 .search-box{
     -fx-background-color: #44008b;
@@ -34,21 +33,22 @@
     -fx-effect: dropshadow(three-pass-box, #8c7ae6, 15, 0, 0, 2) ;
 }
 .search-field{
-  -fx-background-color: transparent;
-  -fx-text-fill: #d1d8e0;
-  -fx-font-family: "Poppins";
-  -fx-font-weight: bold;
-  -fx-font-size: 13;
-  -fx-border: none ;
+    -fx-background-color: transparent;
+    -fx-text-fill: #d1d8e0;
+    -fx-font-family: "Poppins";
+    -fx-font-weight: bold;
+    -fx-font-size: 13;
+    -fx-border: none;
 }
 .search-field:pressed > .search-box{
-   -fx-background-color: white;
+    -fx-background-color: white;
 }
 .cancel-button{
     -fx-background-color: transparent;
     -fx-text-fill: #2b2b2b;
     -fx-cursor: hand;
 }
+
 .definition-wrapper{
     -fx-border-width: 1.5;
     -fx-background-radius: 5;
@@ -56,6 +56,7 @@
     -fx-background-color: white;
     -fx-effect: dropshadow(three-pass-box, #4f2258, 4, 0, 0, 1.5) ;
 }
+
 .explanation-field{
     -fx-background-color: transparent;
     -fx-background-radius: 5;
@@ -68,6 +69,7 @@
     -fx-border-color: #966FBD;
     -fx-border-width: 0 0 2 0;
 }
+
 .edit-button, .delete-button,
 .volume-button{
     -fx-padding:0;
@@ -97,7 +99,7 @@
     -fx-background-insets: 0;
 }
 .save-button:hover{
-    -fx-background-color:  #4a7b35;
+    -fx-background-color: #4a7b35;
 }
 .save-button:pressed{
     -fx-background-color: #e1efdb;
@@ -114,15 +116,15 @@
     -fx-font-weight: 700;
     -fx-padding: 5;
     -fx-background-color: -fx-box-border, -fx-control-inner-background;
-     -fx-background-radius: 5;
-     -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
 }
 .list-cell:even, .list-cell:odd{
     -fx-background-radius: 0;
     -fx-border-radius: 0;
 }
 .list-cell:even{
-     -fx-background-color: #f5f6fa;
+    -fx-background-color: #f5f6fa;
 }
 .list-cell:odd {
     -fx-background-color: #eff0fb;
@@ -161,7 +163,7 @@
 .list-cell .scroll-bar .decrement-arrow,
 .explanation-field .scroll-bar .increment-arrow,
 .explanation-field .scroll-bar .decrement-arrow
- {
+{
 	-fx-padding:0;
 }
 .list-cell .scroll-bar:vertical .thumb,
@@ -209,8 +211,8 @@
     -fx-font-size: 14px;
     -fx-text-fill: #009432;
     -fx-background-color:  #CAF7D8;
-     -fx-background-radius: 5;
-     -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
 }
 .warning-alert{
     -fx-font-size: 12px;
@@ -235,10 +237,12 @@
     -fx-background-radius: 0 0 0 7;
     -fx-border-radius: 0 0 0 7;
 }
+
 .to-speech-field{
     -fx-background-radius: 0 0 7 0;
     -fx-border-radius: 0 0 7 0;
 }
+
 .switch-button{
     -fx-background-color: transparent;
 }
@@ -249,15 +253,16 @@
 }
 
 .exit-button{
-     -fx-background-color: transparent;
-     -fx-background-radius: 30;
-     -fx-background-insets: 0;
-     -fx-text-fill: #fff;
-     -fx-font-weight: bold;
-     -fx-font-family: "Poppins";
+    -fx-background-color: transparent;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: #fff;
+    -fx-font-weight: bold;
+    -fx-font-family: "Poppins";
 }
+
 .exit-button:hover{
-     -fx-background-color: #b22a00;
+    -fx-background-color: #b22a00;
 }
 
 .gameTextArea{
