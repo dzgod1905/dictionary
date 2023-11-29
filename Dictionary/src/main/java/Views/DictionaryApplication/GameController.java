@@ -107,7 +107,7 @@ public class GameController implements Initializable {
   }
 
   private String getScore() {
-      return "Score: " + GameController.point + " / 150\n" +
+    return "Score: " + GameController.point + " / 150\n" +
             "Badge: " + getBadge(GameController.point);
   }
 
@@ -173,7 +173,7 @@ public class GameController implements Initializable {
     inputText += current.charAt(6);
     inputTextField.setText(inputText);
   }
-  
+
   private boolean wordExisted(String word) {
     for (String s: list) if (s.equals(word)) return true;
     return false;

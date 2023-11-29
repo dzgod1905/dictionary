@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -68,6 +69,10 @@ public class DictionaryController implements Initializable {
             return;
         }
         current = path;
+        Circle1.setVisible(path.equals("/Views/SearcherGUI.fxml"));
+        Circle2.setVisible(path.equals("/Views/AdderGUI.fxml"));
+        Circle3.setVisible(path.equals("/Views/TranslatorGUI.fxml"));
+        Circle4.setVisible(path.equals("/Views/GameGUI.fxml"));
         try {
             AnchorPane component = FXMLLoader.load(Objects.requireNonNull(
                     getClass().getResource(current)));
@@ -79,6 +84,9 @@ public class DictionaryController implements Initializable {
 
     @FXML
     private Tooltip tooltip1, tooltip2, tooltip3, tooltip4;
+
+    @FXML
+    private Shape Circle1, Circle2, Circle3, Circle4;
 
     @FXML
     private Button addWordButton, translateButton, searchWordButton, closeButton, gameButton;
