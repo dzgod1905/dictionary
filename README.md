@@ -8,6 +8,11 @@ Final Project for OOP (I2324 INT2204 2)
 - [Nguyễn Hồng Quân (22021122) - K67-C-CLC](https://github.com/quanmcvn)
 - [Nguyễn Ngọc Vũ (21020038) - K66-C-CLC](https://github.com/dzgod1905)
 
+# UML Tree
+<p align="center">
+    <img src="diagram.png">
+</p>
+
 # Giới thiệu
 - Ứng dụng từ điển giúp cho người dùng có thể tra cứu, học từ vựng tiếng Anh một cách nhanh và hiệu quả nhất.
 - Kết hợp với các trò chơi giúp người học giải trí sau những giờ học căng thẳng.
